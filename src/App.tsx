@@ -1,8 +1,7 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css";
+import TotalAmount from "./components/TotalAmount";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -13,8 +12,9 @@ function App() {
           1 other
         </h3>
       </div>
+      <TotalAmount />
     </>
   );
 }
 
-export default App
+export default App;
