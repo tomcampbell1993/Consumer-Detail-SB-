@@ -43,7 +43,7 @@ export default function TotalAmount() {
       },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "Graf to show you what you is spending your monies on",
       },
     },
   };
