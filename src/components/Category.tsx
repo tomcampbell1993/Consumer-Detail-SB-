@@ -1,6 +1,6 @@
 import data from "../../data/data.json";
 import { useEffect, useState } from "react";
-import spendingCodes from "../assets/spendingCodes";
+import spendingCodes from "../assets/SpendingCodes";
 import { Chart as ChartJS, Title, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
@@ -18,7 +18,7 @@ export default function Category() {
       const category = current.recipient.mcc;
       const amount = parseFloat(current.amount);
       const key = (spendingCodes as { [k: string]: string })[category];
-      if(selectedMonth !== null && month !== selectedMonth){
+      if (selectedMonth !== null && month !== selectedMonth) {
         return acc;
       }
 
@@ -42,9 +42,8 @@ export default function Category() {
       .map((el) => el[1])
       .slice(0, 5);
 
-      setLabel(topFiveCategories);
-      setDataSet(topFiveAmount);
-
+    setLabel(topFiveCategories);
+    setDataSet(topFiveAmount);
   }, [selectedMonth]);
 
   const options = {
@@ -96,5 +95,5 @@ export default function Category() {
       <button onClick={() => setSelectedMonth(3)}>April</button>
       <button onClick={() => setSelectedMonth(null)}>Total</button>
     </>
-  ); 
+  );
 }
