@@ -1,8 +1,8 @@
-import data from "../../data/data.json";
 import spendingCodes from "../assets/SpendingCodes";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Data } from "../model";
 
-export default function SavingsAdvice() {
+export default function SavingsAdvice({ data }: {data: Data[]}) {
   const dataMap = data.reduce((acc, current) => {
     const category = current.recipient.mcc;
     const amount = parseFloat(current.amount);
@@ -59,7 +59,7 @@ export default function SavingsAdvice() {
   return (
     <>
       <h1>Savings goals</h1>
-      <p>What is you wanting to save!? in pund for this year </p>
+      <p>What are your savings goals for the rest of the year? </p>
       <input type="number" onChange={(e) => onChange(e)}></input>
       {cheap ? <span id="cheap-message" className="cheap-message"> Stop being cheap!</span> : null}
       <p>

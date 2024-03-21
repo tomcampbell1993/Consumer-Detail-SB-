@@ -1,4 +1,3 @@
-import data from "../../data/data.json";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +8,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { Data } from "../model";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,7 +18,7 @@ ChartJS.register(
   Legend
 );
 
-export default function TotalAmount() {
+export default function TotalAmount({ data }: { data: Data[] }) {
   const labels = ["January", "February", "March", "April"];
 
   const dataMap = data.reduce((acc, current) => {
@@ -43,7 +43,7 @@ export default function TotalAmount() {
       },
       title: {
         display: true,
-        text: "Graf to show you what you is spending your monies on",
+        text: "Graph to show total amount spent per month",
       },
     },
   };
@@ -52,7 +52,7 @@ export default function TotalAmount() {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: "Total amount spent",
         data: dataMap,
         backgroundColor: "#8cff1f",
       },

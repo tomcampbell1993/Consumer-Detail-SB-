@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import spendingCodes from "../assets/SpendingCodes";
-import data from "../../data/data.json";
 import { Chart as ChartJS, Title, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { Data } from "../model";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-export default function Category() {
+export default function Category({ data }: { data: Data[] }) {
   const [labels, setLabel] = useState<string[]>([]);
   const [dataSet, setDataSet] = useState<number[]>([]);
+  const [dataCount, setDataCount] = useState<number>(5);
 
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
 
@@ -18,7 +19,7 @@ export default function Category() {
       const category = current.recipient.mcc;
       const amount = parseFloat(current.amount);
       const key = (spendingCodes as { [k: string]: string })[category];
-      if(selectedMonth !== null && month !== selectedMonth){
+      if (selectedMonth !== null && month !== selectedMonth) {
         return acc;
       }
 
@@ -37,15 +38,14 @@ export default function Category() {
 
     const topFiveCategories = topFiveCategoriesAndAmount
       .map((el) => el[0])
-      .slice(0, 5);
+      .slice(0, dataCount);
     const topFiveAmount = topFiveCategoriesAndAmount
       .map((el) => el[1])
-      .slice(0, 5);
+      .slice(0, dataCount);
 
-      setLabel(topFiveCategories);
-      setDataSet(topFiveAmount);
-
-  }, [selectedMonth]);
+    setLabel(topFiveCategories);
+    setDataSet(topFiveAmount);
+  }, [selectedMonth, dataCount]);
 
   const options = {
     responsive: true,
@@ -55,7 +55,7 @@ export default function Category() {
       },
       title: {
         display: true,
-        text: "Chart.js Pie Chart",
+        text: "",
       },
     },
   };
@@ -96,7 +96,19 @@ export default function Category() {
         <button onClick={() => setSelectedMonth(3)}>April</button>
         <button onClick={() => setSelectedMonth(null)}>Total</button>
       </div>
-      <Pie className="pie" height={450} width={450} options={options} data={graphData} />
+      <h2>Your spending summary by category</h2>
+      <label>Select the number of datasets to display </label>
+      <input
+        type="number"
+        onChange={(e) => setDataCount(Number(e.target.value))}
+      ></input>
+      <Pie
+        className="pie"
+        height={450}
+        width={450}
+        options={options}
+        data={graphData}
+      />
     </>
-  ); 
+  );
 }
