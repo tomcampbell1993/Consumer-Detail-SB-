@@ -41,9 +41,8 @@
 .cheap-message{
   font-weight: bold;
   color: red;
-  display: none;
 }
 
-main{
+.main{
   text-align: center;
 }
