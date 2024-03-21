@@ -45,24 +45,36 @@ export default function SavingsAdvice() {
   const topMerchant = topMerchantAndAmount.map((el) => el[0]).slice(0, 1);
 
   const [customerInput, setCustomerInput] = useState<string>("");
+  const [cheap, setCheap] = useState(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCustomerInput(e.target.value);
+    if (Number(e.target.value) < 1000 && e.target.value != "") {
+      setCheap(true);
+    } else {
+      setCheap(false);
+    }
   };
 
   return (
     <>
       <h1>Savings goals</h1>
-      <label>What is you wanting to save!? in pund for this year </label>
+      <p>What is you wanting to save!? in pund for this year </p>
       <input type="number" onChange={(e) => onChange(e)}></input>
+      {cheap ? <span id="cheap-message" className="cheap-message"> Stop being cheap!</span> : null}
       <p>
         To achieve your savings goal you need to save £
         <b>{Number(customerInput) / 8}</b> per Month.
       </p>
-      <p>{customerInput}</p>
-      <p>{topCategory}</p>
-      <p>{topAmount}</p>
-      <p>{topMerchant}</p>
+      <p>
+        You are spending the most money on <b>{topCategory}</b>
+      </p>
+      <p>
+        The money you are spending on <b>{topCategory}</b> is <b>{topAmount}</b>
+      </p>
+      <p>
+        You are buying mostly from <b>{topMerchant}</b>
+      </p>
     </>
   );
 }

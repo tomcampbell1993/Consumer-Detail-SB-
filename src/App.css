@@ -37,3 +37,13 @@
   width: 550px !important;
   height: 550px !important;
 }
+
+.cheap-message{
+  font-weight: bold;
+  color: red;
+  display: none;
+}
+
+main{
+  text-align: center;
+}

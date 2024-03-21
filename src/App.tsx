@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import TotalAmount from "./components/TotalAmount";
 import Category from "./components/Category";
+import SavingsAdvice from "./components/SavingsAdvice";
 
 function App() {
   const [page, setPage] = useState<number>(0);
@@ -13,6 +14,9 @@ function App() {
     if (page === 1) {
       return <Category />
     }
+    if (page === 2) {
+      return <SavingsAdvice />
+    }
   }
 
   return (
@@ -21,6 +25,7 @@ function App() {
         <h5>Fix your funds</h5>
         <button onClick={()=>setPage(0)}>Total</button>
         <button onClick={()=>setPage(1)}>Monthly</button>
+        <button onClick={()=>setPage(2)}>Savings Advice</button>
       </div>
       <div className="main">
         <h2>
