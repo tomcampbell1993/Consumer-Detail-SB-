@@ -54,10 +54,10 @@ export default function TotalAmount() {
       {
         label: "Dataset 1",
         data: dataMap,
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "#8cff1f",
       },
     ],
   };
 
-  return <Bar options={options} data={graphData} />;
+  return <Bar className="bar" options={options} data={graphData} />;
 }

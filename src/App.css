@@ -1,7 +1,39 @@
-table{
-  border: solid black 1px;
+.header {
+  position: fixed;
+  border-bottom: .5px solid whitesmoke; 
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem .5rem;
+}
 
-  th{
-    border: solid black 1px;
-  }
+.header h5,
+.header :last-child {
+  margin-right: auto;
+}
+
+.main {
+  padding: 100px 2rem 2rem 2rem;
+}
+
+.category__buttons {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.bar,
+.pie {
+  margin: 0 auto;
+}
+
+.bar {
+  width: 100% !important;
+  height: 550px !important;
+}
+
+.pie {
+  width: 550px !important;
+  height: 550px !important;
 }
